@@ -1,0 +1,10 @@
+h1, p {
+    color: white;
+    margin-top: 10px;
+}
+
+.container, #main-container, .countdown, #question-container, #scoreboard-container {
+    background-color: grey;
+    text-align: center;
+    margin: 25px;
+}
