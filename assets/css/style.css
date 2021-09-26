@@ -3,6 +3,10 @@ h1, p {
     margin-top: 10px;
 }
 
+#initals {
+    width: 25px ;
+}
+
 #container, #main-container, .countdown, #quiz-container, #scoreboard-container {
     background-color: grey;
     text-align: center;

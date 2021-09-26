@@ -7,6 +7,8 @@ var timeEl = document.querySelector(".countdown");
 var startBtn = document.querySelector("#start");
 var nextBtn = document.querySelector("#next");
 var previousBtn = document.querySelector("#previous");
+var saveBtn = document.querySelector("#save");
+
 
 var questionTitle = document.getElementById('questionTitle');
 var multipleChoice = document.getElementById('multipleChoice');
