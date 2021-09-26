@@ -1,76 +1,49 @@
 var mainContainer = document.getElementById("main-container");
-var btnContainer = document.getElementById("question-container");
+var questionContainer = document.getElementById("question-container");
 var scoreContainer = document.getElementById("scoreboard-container");
 var btnContainer = document.getElementById("btn-container");
 
 var timeEl = document.querySelector(".countdown");
 var startBtn = document.querySelector("#start");
+var nextBtn = document.querySelector("#next");
+var previousBtn = document.querySelector("#previous");
 
-var points = 0;
-var timeLeft = 3;
-var currentQuestion = 0;
+var questionTitle = document.getElementById('questionTitle');
+var multipleChoice = document.getElementById('multipleChoice');
 
-var questions = [
+var quiz = [
     {
         question: "The longest River in Europe is? ",
-        multipleChoices: ["The Rhine","The Ural", "The Don","The Volga"],
-        correctAnswers: "4"
+        choices: ["The Rhine","The Ural", "The Don","The Volga"],
+        correctAnswers: "The Volga"
     },
     {
         question: "90% of Earth's population lives where? ",
-        multipleChoices: ["The Northern Hemisphere", "50 Miles from the coasts", "In Asia", "In the Tropics"],
-        correctAnswer: "0"
+        choices: ["The Northern Hemisphere", "50 Miles from the coasts", "In Asia", "In the Tropics"],
+        correctAnswer: "The Northern Hemisphere"
     },
     {
         question: "What developed country is the only one without Universal Healthcare? ",
-        multipleChoices: ["Spain","USA","Australia","Russia"],
-        correctAnswer: "1"
-    },
-    {
-        question: "How many langages are spoken in Africa? ",
-        multipleChoices: ["1500-3000","500-1000", "5000-7000", "1000-1500"],
-        correctAnswer: "0"
-    },
-    {
-        question: "Which Contries have mulitple Capitals? ",
-        multipleChoices: ["Philippines and Libya", "India and Malawi", "Eswatini and South Africa", "Laos and Serbia"],
-        correctAnswer: "2"
-    },
-    {
-        question: "Which one of these countries does the USA not boarder? ",
-        multipleChoices: ["Russia", "Bahamas", "Cuba", "Barbados" ],
-        correctAnswer: "3"
-    },
-    {
-        question: "When did Haiti gain its independence? ",
-        multipleChoices: ["July 1, 1809", "January 1, 1804", "October 15, 1784", "June 1, 1704"],
-        correctAnswer: "1"
-    },
-    {
-        question: "What are the Capitals of North America? ",
-        multipleChoices: ["Toronto, Washington D.C, and Mexico City","Vancouver, Washington D.C, and Guadalajara", "Ottawa, Washington D.C, and Mexico City", "Quebec City, Washington D.C, and Mexico City"],
-        correctAnswer: "2"
-    },
-    {
-        question: "The top 3 Countries with the most languages are? ",
-        multipleChoices: ["Papua New Guinea, Indonesia, and Nigeria", "USA, China, and Mexico", "Russia, USA, and India","Brazil, Pakistan, and Germany"],
-        correctAnswer: "0"
-    },
-    {
-        question: "What country has the highest rate of twin births?",
-        multipleChoices: ["Benin", "France", "Sweden","Indonesia"],
-        correctAnswer: "0"
+        choices: ["Spain","USA","Australia","Russia"],
+        correctAnswer: "USA"
     }
 ]
 
+var points = 0;
+var timeLeft = 10;
+var i = 0;
+
+
+
 startBtn.addEventListener("click", function() {
-    displayQuestion();
+    startBtn.style.display='none';
+    multipleChoice.style.display='inline-block';
+    nextBtn.style.display='inline-block';
+    previousBtn.style.display='inline-block';
+
     startCountdown();
+    displayTest(i);
 })
-
-function displayQuestion() {
-
-}
 
 function startCountdown() {
   var timerInterval = setInterval(function() {
@@ -79,9 +52,44 @@ function startCountdown() {
 
     if(timeLeft === 0) {
       clearInterval(timerInterval);
+      scoreContainer.style.visibility="visible";
+      multipleChoice.style.display="none";
+      nextBtn.style.display='none';
+      previousBtn.style.display='none';
       timeEl.style.color = "red";
     }
   }, 1000);
 }
 
+nextBtn.onclick = function() {
 
+    displayTest(i);
+    i++;
+};
+
+previousBtn.onclick = function() {
+
+    displayTest(i);
+    i--;
+};
+
+function displayTest() {
+    var currentQuestion = quiz[i].question;
+    var currentAnswers = quiz[i].choices;
+
+    console.log(currentQuestion)
+
+    questionTitle.innerText = currentQuestion;
+    displayChoices(currentAnswers);
+}
+
+function displayChoices(ca) {
+
+    multipleChoice.innerHTML = "";
+    // Populate list with options:
+    for(var i = 0; i < ca.length; i++) {
+        var opt = ca[i];
+        multipleChoice.innerHTML += "<option value=\"" + opt + "\">" + opt + "</option>";
+    }
+
+}

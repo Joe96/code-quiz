@@ -12,33 +12,39 @@
 
   <body>
 
-    <div class="container">
+    <div id="container">
       <h1>Welcome to Code Quiz!</h1>
-      <p>Test your geography knowledge. You have a minute to awnser 10 geography questions</p>
-      <p>However every question you get wrong takes 10 seconds away from your remainng time</p>
+      <p>Test your geography knowledge. <b>You have a minute to answer ten</b> geography questions.</p>
+      <p>However every <b>question you get wrong takes 10 seconds away</b> from your remaining time.</p>
 
 
       <div id="main-container">
 
         <div class="countdown">
-          <span id="time" class="time">60</span> Seconds
+          <span id="time" class="time"></span>
         </div>
 
-        <div id="question-container">
+        <div id="quiz-container">
+          <h2 id='questionTitle'></h2>
+          <select id ='multipleChoice'> 
+          </select>
+        </div>
 
+        <div id="scoreboard-container">
+          Points: <span id="points"></span><br>
+          Initals:
+          <input id="initals"></input>
+        </div>
+  
+        <div class="btn-container">
+          <button id="start" class="btn">Start Game</button>
+          <button id="next" class="btn">Next</button>
+          <button id="previous" class="btn">Previous</button>
+          <button id="restart" class="btn">Restart</button>
+  
+  
+        </div>
       </div>
-
-      </div>
-
-      <div id="scoreboard-container">
-
-
-      </div>
-
-      <div class="btn-container">
-        <button id="start" class="btn">Start Game</button>
-      </div>
-
     </div>
     <script src="./assets/js/script.js"></script>
 

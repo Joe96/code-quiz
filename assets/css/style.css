@@ -1,10 +1,18 @@
 h1, p {
-    color: white;
+    color: black;
     margin-top: 10px;
 }
 
-.container, #main-container, .countdown, #question-container, #scoreboard-container {
+#container, #main-container, .countdown, #quiz-container, #scoreboard-container {
     background-color: grey;
     text-align: center;
     margin: 25px;
+}
+
+#next, #previous, #restart, #multipleChoice {
+    display: none;
+}
+
+#scoreboard-container {
+    visibility:hidden;
 }
