@@ -6,7 +6,6 @@ var btnContainer = document.getElementById("btn-container");
 var timeEl = document.querySelector(".countdown");
 var startBtn = document.querySelector("#start");
 var nextBtn = document.querySelector("#next");
-var previousBtn = document.querySelector("#previous");
 var saveBtn = document.querySelector("#save");
 
 
@@ -17,7 +16,7 @@ var quiz = [
     {
         question: "The longest River in Europe is? ",
         choices: ["The Rhine","The Ural", "The Don","The Volga"],
-        correctAnswers: "The Volga"
+        correctAnswer: "The Volga"
     },
     {
         question: "90% of Earth's population lives where? ",
@@ -32,19 +31,16 @@ var quiz = [
 ]
 
 var points = 0;
-var timeLeft = 10;
+var timeLeft = 90;
 var i = 0;
-
-
 
 startBtn.addEventListener("click", function() {
     startBtn.style.display='none';
     multipleChoice.style.display='inline-block';
     nextBtn.style.display='inline-block';
-    previousBtn.style.display='inline-block';
 
     startCountdown();
-    displayTest(i);
+    displayTest();
 })
 
 function startCountdown() {
@@ -57,29 +53,14 @@ function startCountdown() {
       scoreContainer.style.visibility="visible";
       multipleChoice.style.display="none";
       nextBtn.style.display='none';
-      previousBtn.style.display='none';
       timeEl.style.color = "red";
     }
   }, 1000);
 }
 
-nextBtn.onclick = function() {
-
-    displayTest(i);
-    i++;
-};
-
-previousBtn.onclick = function() {
-
-    displayTest(i);
-    i--;
-};
-
 function displayTest() {
     var currentQuestion = quiz[i].question;
     var currentAnswers = quiz[i].choices;
-
-    console.log(currentQuestion)
 
     questionTitle.innerText = currentQuestion;
     displayChoices(currentAnswers);
@@ -88,10 +69,25 @@ function displayTest() {
 function displayChoices(ca) {
 
     multipleChoice.innerHTML = "";
-    // Populate list with options:
     for(var i = 0; i < ca.length; i++) {
         var opt = ca[i];
         multipleChoice.innerHTML += "<option value=\"" + opt + "\">" + opt + "</option>";
     }
+}
+
+nextBtn.onclick = function() {
+
+    i++;
+    compare(i);
+    displayTest(i);
+
+};
+
+function compare() {
+    var choice = document.getElementById("multipleChoice").value;
+
+    console.log(choice)
+    console.log(quiz[i].correctAnswer)
 
 }
+
