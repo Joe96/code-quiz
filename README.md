@@ -25,7 +25,8 @@ THEN I can save my initials and my score
 ```
 
 ## Screenshots
-![Code_quiz](https://user-images.githubusercontent.com/17390256/134997054-3bc8092a-88e5-4c67-9cf8-f0bbb0f44788.png)
+![Code_quiz](https://user-images.githubusercontent.com/17390256/134997232-84c521c6-3c26-40e9-9e32-766dfa94d08c.png)
+
 ![Code_quiz_end](https://user-images.githubusercontent.com/17390256/134997080-850f0ba4-ff62-4de4-85bc-f8091b342cbe.PNG)
 
 
