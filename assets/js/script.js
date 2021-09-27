@@ -1,4 +1,3 @@
-var mainContainer = document.getElementById("main-container");
 var questionContainer = document.getElementById("question-container");
 var scoreContainer = document.getElementById("scoreboard-container");
 var btnContainer = document.getElementById("btn-container");
@@ -7,7 +6,6 @@ var timeEl = document.querySelector(".countdown");
 var startBtn = document.querySelector("#start");
 var nextBtn = document.querySelector("#next");
 var saveBtn = document.querySelector("#save");
-
 
 var questionTitle = document.getElementById('questionTitle');
 var multipleChoice = document.getElementById('multipleChoice');
@@ -27,6 +25,41 @@ var quiz = [
         question: "What developed country is the only one without Universal Healthcare? ",
         choices: ["Spain","USA","Australia","Russia"],
         correctAnswer: "USA"
+    },
+    {
+        question: "How many langages are spoken in Africa? ",
+        choices: ["1500-3000","500-1000", "5000-7000", "1000-1500"],
+        correctAnswer: "1500-3000"
+    },
+    {
+        question: "Which Contries have mulitple Capitals? ",
+        choices: ["Philippines and Libya", "India and Malawi", "Eswatini and South Africa", "Laos and Serbia"],
+        correctAnswer: "Eswatini and South Africa"
+    },
+    {
+        question: "Which one of these countries does the USA not boarder? ",
+        choices: ["Russia", "Bahamas", "Cuba", "Barbados" ],
+        correctAnswer: "Barbados"
+    },
+    {
+        question: "When did Haiti gain its independence? ",
+        choices: ["July 1, 1809", "January 1, 1804", "October 15, 1784", "June 1, 1704"],
+        correctAnswer: "January 1, 1804"
+    },
+    {
+        question: "What are the Capitals of North America? ",
+        choices: ["Toronto, Washington D.C, and Mexico City","Vancouver, Washington D.C, and Guadalajara", "Ottawa, Washington D.C, and Mexico City", "Quebec City, Washington D.C, and Mexico City"],
+        correctAnswer: "Ottawa, Washington D.C, and Mexico City",
+    },
+    {
+        question: "The top 3 Countries with the most languages are? ",
+        choices: ["Papua New Guinea, Indonesia, and Nigeria", "USA, China, and Mexico", "Russia, USA, and India","Brazil, Pakistan, and Germany"],
+        correctAnswer: "Papua New Guinea, Indonesia, and Nigeria"
+    },
+    {
+        question: "What country has the highest rate of twin births?",
+        choices: ["Benin", "France", "Sweden","Indonesia"],
+        correctAnswer: "Benin"
     }
 ]
 
@@ -60,34 +93,36 @@ function startCountdown() {
 
 function displayTest() {
     var currentQuestion = quiz[i].question;
-    var currentAnswers = quiz[i].choices;
+    var currentChoices = quiz[i].choices;
 
     questionTitle.innerText = currentQuestion;
-    displayChoices(currentAnswers);
+
+    displayChoices(currentChoices);   
+
 }
 
-function displayChoices(ca) {
+function displayChoices(cc) {
 
     multipleChoice.innerHTML = "";
-    for(var i = 0; i < ca.length; i++) {
-        var opt = ca[i];
+    for(var i = 0; i < cc.length; i++) {
+        var opt = cc[i];
         multipleChoice.innerHTML += "<option value=\"" + opt + "\">" + opt + "</option>";
     }
 }
 
 nextBtn.onclick = function() {
+    var choice = document.getElementById("multipleChoice").value;
+    var currentAnswer = quiz[i].correctAnswer;
+
+    if (choice == currentAnswer) {
+        console.log("Match")
+        points = points +10;
+    } else {
+        console.log("Wrong")
+        timeLeft = timeLeft -10;
+
+    }
 
     i++;
-    compare(i);
     displayTest(i);
-
 };
-
-function compare() {
-    var choice = document.getElementById("multipleChoice").value;
-
-    console.log(choice)
-    console.log(quiz[i].correctAnswer)
-
-}
-
