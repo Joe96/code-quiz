@@ -2,6 +2,8 @@ var questionContainer = document.getElementById("question-container");
 var scoreContainer = document.getElementById("scoreboard-container");
 var btnContainer = document.getElementById("btn-container");
 
+var pointCounter = document.getElementById("points");
+
 var startBtn = document.querySelector("#start");
 var timeEl = document.querySelector(".countdown");
 var nextBtn = document.querySelector("#next");
@@ -69,7 +71,7 @@ var quiz = [
 var points = 0;
 var timeLeft = 90;
 var i = 0;
-var timerInterval
+var timerInterval;
 
 startBtn.addEventListener("click", function() {
     startBtn.style.display='none';
@@ -131,7 +133,9 @@ nextBtn.onclick = function() {
         console.log("done!")
         clearInterval(timerInterval);
         nextBtn.style.display='none';
+        pointCounter.style.display='inline-block';
         scoreContainer.style.visibility="visible";
+        pointCounter.textContent = points + timeLeft + " Points ";
     }
 
     i++;

@@ -13,7 +13,7 @@ h1, p {
     margin: 25px;
 }
 
-#next, #previous, #restart, #multipleChoice {
+#next, #previous, #restart, #points, #multipleChoice {
     display: none;
 }
 
