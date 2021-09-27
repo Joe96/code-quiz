@@ -2,10 +2,13 @@ var questionContainer = document.getElementById("question-container");
 var scoreContainer = document.getElementById("scoreboard-container");
 var btnContainer = document.getElementById("btn-container");
 
-var timeEl = document.querySelector(".countdown");
 var startBtn = document.querySelector("#start");
+var timeEl = document.querySelector(".countdown");
 var nextBtn = document.querySelector("#next");
+
 var saveBtn = document.querySelector("#save");
+var initals = document.querySelector("#initals");
+
 
 var questionTitle = document.getElementById('questionTitle');
 var multipleChoice = document.getElementById('multipleChoice');
@@ -60,12 +63,13 @@ var quiz = [
         question: "What country has the highest rate of twin births?",
         choices: ["Benin", "France", "Sweden","Indonesia"],
         correctAnswer: "Benin"
-    }
-]
+    },
+];
 
 var points = 0;
 var timeLeft = 90;
 var i = 0;
+var timerInterval
 
 startBtn.addEventListener("click", function() {
     startBtn.style.display='none';
@@ -74,10 +78,10 @@ startBtn.addEventListener("click", function() {
 
     startCountdown();
     displayTest();
-})
+});
 
 function startCountdown() {
-  var timerInterval = setInterval(function() {
+    timerInterval = setInterval(function() {
     timeLeft--;
     timeEl.textContent = timeLeft + " Seconds ";
 
@@ -96,31 +100,38 @@ function displayTest() {
     var currentChoices = quiz[i].choices;
 
     questionTitle.innerText = currentQuestion;
+    displayChoices(currentChoices);
 
-    displayChoices(currentChoices);   
-
+    console.log(quiz[i].question)
 }
 
 function displayChoices(cc) {
 
     multipleChoice.innerHTML = "";
+
     for(var i = 0; i < cc.length; i++) {
         var opt = cc[i];
         multipleChoice.innerHTML += "<option value=\"" + opt + "\">" + opt + "</option>";
     }
 }
 
+
 nextBtn.onclick = function() {
+
     var choice = document.getElementById("multipleChoice").value;
     var currentAnswer = quiz[i].correctAnswer;
 
     if (choice == currentAnswer) {
-        console.log("Match")
         points = points +10;
     } else {
-        console.log("Wrong")
         timeLeft = timeLeft -10;
+    }
 
+    if (choice == "Benin") {
+        console.log("done!")
+        clearInterval(timerInterval);
+        nextBtn.style.display='none';
+        scoreContainer.style.visibility="visible";
     }
 
     i++;
